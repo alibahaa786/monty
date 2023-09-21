@@ -54,7 +54,6 @@ int main(int argc, char *argv[])
 /**
  * tokenize - split command into words
  * @command: full command
- * @line_num: line number of opcode
  * Return: array of words of the command
 */
 
@@ -115,6 +114,11 @@ int is_blank(char *line)
 	return (1);
 }
 
+/**
+ * free_stack - free stack
+ * @stack: stack
+*/
+
 void free_stack(stack_t *stack)
 {
 	stack_t *tmp;
@@ -127,9 +131,15 @@ void free_stack(stack_t *stack)
 	}
 }
 
+/**
+ * free_array - free array
+ * @array: array
+*/
+
 void free_array(char **array)
 {
 	int i;
+
 	for (i = 0; array[i]; i++)
 		free(array);
 }
