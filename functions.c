@@ -3,10 +3,11 @@
 /**
  * get_function - get function of opcode
  * @line: opcode
+ * @line_number: line number of opcode
  * Return: function associated with opcode
 */
 
-void (*get_function(char *line, unsigned int line_number))(stack_t **, unsigned int)
+void (*get_function(char *line, int line_number))(stack_t **, unsigned int)
 {
 	int i;
 	instruction_t instruct[] = {
