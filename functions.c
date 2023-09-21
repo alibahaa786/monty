@@ -6,7 +6,7 @@
  * Return: function associated with opcode
 */
 
-void (*get_function(char *line))(stack_t **, unsigned int)
+void (*get_function(char *line, unsigned int line_number))(stack_t **, unsigned int)
 {
 	int i;
 	instruction_t instruct[] = {
@@ -16,13 +16,15 @@ void (*get_function(char *line))(stack_t **, unsigned int)
 		{"pop", _pop}
 	};
 
-	for (i = 0; instruct[i].opcode; i++)
+	for (i = 0; i < 4; i++)
 	{
 		if (!strcmp(instruct[i].opcode, line))
 		{
 			return (instruct[i].f);
 		}
 	}
+	fprintf(stderr, "L%d: unknown instruction %s\n", line_number, line);
+	exit(EXIT_FAILURE);
 	return (NULL);
 }
 

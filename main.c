@@ -15,7 +15,7 @@ int main(int argc, char *argv[])
 	FILE *f;
 	char *command;
 	int line_num = 0;
-	void (*func)(stack_t**, unsigned int);
+	/*void (*func)(stack_t**, unsigned int);*/
 
 	if (argc != 2)
 	{
@@ -37,12 +37,13 @@ int main(int argc, char *argv[])
 	while (fgets(command, 1024, f))
 	{
 		line_num++;
+		if (is_blank(command))
+			continue;
 		command[strlen(command) - 1] = '\0';
 		commandv = tokenize(command);
 		if (!commandv)
 			continue;
-		func = get_function(commandv[0]);
-		func(&stack, line_num);
+		get_function(commandv[0], line_num)(&stack, line_num);
 	}
 	exit(EXIT_SUCCESS);
 }
@@ -89,4 +90,24 @@ char **tokenize(char *command)
 			break;
 	}
 	return (commandv);
+}
+
+/**
+ * is_blank - check if line of opcode is blank
+ * @line: opcode
+ * Return: 1 if blank else 0
+*/
+
+int is_blank(char *line)
+{
+	size_t i;
+
+	if (strlen(line) < 2)
+		return (1);
+	for (i = 0; i < strlen(line) - 1; i++)
+	{
+		if (line[i] != ' ')
+			return (0);
+	}
+	return (1);
 }
