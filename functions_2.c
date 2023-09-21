@@ -28,3 +28,29 @@ int get_int(int line_number)
 	num = atoi(commandv[1]);
 	return (num);
 }
+
+/**
+ * _swap - swap top two nodes
+ * @stack: bottom node
+ * @line_number: line number of opcode
+*/
+
+void _swap(stack_t **stack, unsigned int line_number)
+{
+	int tmp;
+	stack_t *previous, *current = *stack;
+
+	if (!current->next)
+	{
+		fprintf(stderr, "L%d: can't swap, stack too short\n", line_number);
+		exit(EXIT_FAILURE);
+	}
+	while (current->next)
+	{
+		previous = current;
+		current = current->next;
+	}
+	tmp = current->n;
+	current->n = previous->n;
+	previous->n = tmp;
+}

@@ -14,10 +14,11 @@ void (*get_function(char *line, int line_number))(stack_t **, unsigned int)
 		{"push", _push},
 		{"pall", _pall},
 		{"pint", _pint},
-		{"pop", _pop}
+		{"pop", _pop},
+		{"swap", _swap}
 	};
 
-	for (i = 0; i < 4; i++)
+	for (i = 0; i < 5; i++)
 	{
 		if (!strcmp(instruct[i].opcode, commandv[0]))
 		{
@@ -26,7 +27,6 @@ void (*get_function(char *line, int line_number))(stack_t **, unsigned int)
 	}
 	fprintf(stderr, "L%d: unknown instruction %s\n", line_number, line);
 	exit(EXIT_FAILURE);
-	return (NULL);
 }
 
 /**

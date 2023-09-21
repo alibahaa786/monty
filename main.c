@@ -44,9 +44,7 @@ int main(int argc, char *argv[])
 			continue;
 		get_function(command, line_num)(&stack, line_num);
 	}
-	free(command);
 	free_stack(stack);
-	free_array(commandv);
 	fclose(f);
 	exit(EXIT_SUCCESS);
 }

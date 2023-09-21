@@ -44,6 +44,7 @@ char **tokenize(char *command);
 void _pall(stack_t **stack, unsigned int __attribute__((unused)) line_number);
 void _pint(stack_t **stack, unsigned int line_number);
 void _pop(stack_t **stack, unsigned int line_number);
+void _swap(stack_t **stack, unsigned int line_number);
 void free_stack(stack_t *stack);
 void free_array(char **array);
 int is_blank(char *line);
