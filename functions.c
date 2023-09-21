@@ -44,7 +44,7 @@ void _push(stack_t **stack, unsigned int line_number)
 	}
 	for (i = 0; commandv[1][i]; i++)
 	{
-		if (commandvcommandv[1][i] < 48 || commandv[1][i] > 57)
+		if (commandv[1][i] < 48 || commandv[1][i] > 57)
 		{
 			fprintf(stderr, "L%d: usage: push integer\n", line_number);
 			exit(EXIT_FAILURE);
