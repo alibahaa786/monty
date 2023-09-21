@@ -16,10 +16,11 @@ void (*get_function(char *line, int line_number))(stack_t **, unsigned int)
 		{"pint", _pint},
 		{"pop", _pop},
 		{"swap", _swap},
-		{"add", _add}
+		{"add", _add},
+		{"nop", _nop}
 	};
 
-	for (i = 0; i < 6; i++)
+	for (i = 0; i < 7; i++)
 	{
 		if (!strcmp(instruct[i].opcode, commandv[0]))
 		{
