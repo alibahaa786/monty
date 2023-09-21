@@ -54,3 +54,28 @@ void _swap(stack_t **stack, unsigned int line_number)
 	current->n = previous->n;
 	previous->n = tmp;
 }
+
+/**
+ * _swap - swap top two nodes
+ * @stack: bottom node
+ * @line_number: line number of opcode
+*/
+
+void _add(stack_t **stack, unsigned int line_number)
+{
+	stack_t *previous, *current = *stack;
+
+	if (!current->next)
+	{
+		fprintf(stderr, "L%u: can't swap, stack too short\n", line_number);
+		exit(EXIT_FAILURE);
+	}
+	while (current->next)
+	{
+		previous = current;
+		current = current->next;
+	}
+	previous->n = previous->n + current->n;
+	previous->next = NULL;
+	free(current);
+}
