@@ -44,6 +44,10 @@ int main(int argc, char *argv[])
 			continue;
 		get_function(command, line_num)(&stack, line_num);
 	}
+	free(command);
+	free_stack(stack);
+	free_array(commandv);
+	fclose(f);
 	exit(EXIT_SUCCESS);
 }
 
@@ -67,7 +71,7 @@ char **tokenize(char *command)
 	}
 	for (i = 0; command[i]; i++)
 	{
-		if (command[i] != ' ' && command[i - 1] == ' ')
+		if (command[i] != ' ' && command[i - 1] == ' ' && j)
 		{
 			cmd[j] = ' ';
 			j++;
@@ -80,6 +84,10 @@ char **tokenize(char *command)
 			j++;
 		}
 	}
+	for (i = 0; cmd[i]; i++)
+		command[i] = cmd[i];
+	for (; command[i]; i++)
+		command[i] = '\0';
 	if (!cmd)
 		return (NULL);
 	commandv[0] = strtok(cmd, " ");
@@ -105,4 +113,23 @@ int is_blank(char *line)
 			return (0);
 	}
 	return (1);
+}
+
+void free_stack(stack_t *stack)
+{
+	stack_t *tmp;
+
+	while (stack)
+	{
+		tmp = stack->next;
+		free(stack);
+		stack = tmp;
+	}
+}
+
+void free_array(char **array)
+{
+	int i;
+	for (i = 0; array[i]; i++)
+		free(array);
 }
