@@ -19,7 +19,7 @@ void (*get_function(char *line, int line_number))(stack_t **, unsigned int)
 
 	for (i = 0; i < 4; i++)
 	{
-		if (!strcmp(instruct[i].opcode, line))
+		if (!strcmp(instruct[i].opcode, commandv[0]))
 		{
 			return (instruct[i].f);
 		}

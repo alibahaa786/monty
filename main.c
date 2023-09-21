@@ -42,7 +42,7 @@ int main(int argc, char *argv[])
 		commandv = tokenize(command);
 		if (!commandv)
 			continue;
-		get_function(commandv[0], line_num)(&stack, line_num);
+		get_function(command, line_num)(&stack, line_num);
 	}
 	exit(EXIT_SUCCESS);
 }
