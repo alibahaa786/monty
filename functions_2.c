@@ -1,8 +1,15 @@
 #include "monty.h"
 
+/**
+ * get_int - get int from string
+ * @line_number: line number of opcode
+ * Return: return int
+*/
+
 int get_int(int line_number)
 {
 	int num, i;
+
 	if (!commandv[1])
 	{
 		fprintf(stderr, "L%d: usage: push integer\n", line_number);

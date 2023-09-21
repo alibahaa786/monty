@@ -39,7 +39,7 @@ int main(int argc, char *argv[])
 		if (is_blank(command))
 			continue;
 		command[strlen(command) - 1] = '\0';
-		commandv = tokenize(command, line_num);
+		commandv = tokenize(command);
 		if (!commandv)
 			continue;
 		get_function(commandv[0], line_num)(&stack, line_num);
@@ -50,10 +50,11 @@ int main(int argc, char *argv[])
 /**
  * tokenize - split command into words
  * @command: full command
+ * @line_num: line number of opcode
  * Return: array of words of the command
 */
 
-char **tokenize(char *command, int line_num)
+char **tokenize(char *command)
 {
 	size_t i, j = 0;
 	char *cmd = malloc(sizeof(char *));
@@ -83,13 +84,6 @@ char **tokenize(char *command, int line_num)
 		return (NULL);
 	commandv[0] = strtok(cmd, " ");
 	commandv[1] = strtok(NULL, " ");
-	if (commandv[1])
-		commandv[2] = strtok(NULL, " ");
-	if (commandv[2])
-	{
-		fprintf(stderr, "L%d: unknown instruction %s\n", line_num, command);
-		exit(EXIT_FAILURE);
-	}
 	return (commandv);
 }
 
