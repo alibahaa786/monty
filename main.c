@@ -48,6 +48,12 @@ int main(int argc, char *argv[])
 	exit(EXIT_SUCCESS);
 }
 
+/**
+ * tokenize - split command into words
+ * @command: full command
+ * Return: array of words of the command
+*/
+
 char **tokenize(char *command)
 {
 	size_t i, j = 0;

@@ -3,6 +3,7 @@
 /**
  * get_function - get function of opcode
  * @line: opcode
+ * Return: function associated with opcode
 */
 
 void (*get_function(char *line))(stack_t **, unsigned int)
@@ -34,7 +35,7 @@ void (*get_function(char *line))(stack_t **, unsigned int)
 void _push(stack_t **stack, unsigned int line_number)
 {
 	int num, i;
-	stack_t *new, *temp;
+	stack_t *new = malloc(sizeof(stack_t)), *temp;
 
 	if (!commandv[1])
 	{
@@ -43,14 +44,13 @@ void _push(stack_t **stack, unsigned int line_number)
 	}
 	for (i = 0; commandv[1][i]; i++)
 	{
-		if (commandv[1][i] < 48 || commandv[1][i] > 57)
+		if (commandvcommandv[1][i] < 48 || commandv[1][i] > 57)
 		{
 			fprintf(stderr, "L%d: usage: push integer\n", line_number);
 			exit(EXIT_FAILURE);
 		}
 	}
 	num = atoi(commandv[1]);
-	new = malloc(sizeof(stack_t));
 	if (!new)
 	{
 		fprintf(stderr, "Error: malloc failed");
@@ -61,9 +61,7 @@ void _push(stack_t **stack, unsigned int line_number)
 	if (temp)
 	{
 		while (temp->next)
-		{
 			temp = temp->next;
-		}
 		new->prev = temp;
 		temp->next = new;
 		new->next = NULL;
@@ -107,7 +105,7 @@ void _pall(stack_t **stack, unsigned int __attribute__((unused)) line_number)
 void _pint(stack_t **stack, unsigned int line_number)
 {
 	stack_t *tmp = *stack;
-	
+
 	if (!tmp)
 	{
 		fprintf(stderr, "L%d: can't pint, stack empty\n", line_number);
